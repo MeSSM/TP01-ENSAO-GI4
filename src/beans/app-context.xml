@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="database" class="com.ensa.gi4.datatabase.Database"/>
+
+    <bean id="materielFactory" class="com.ensa.gi4.datatabase.MaterielFactory"/>
+
+    <bean id="chaiseDao"  class="com.ensa.gi4.datatabase.ChaiseDao">
+        <constructor-arg ref="database"/>
+    </bean>
+
+    <bean id="livreDao" class="com.ensa.gi4.datatabase.LivreDao">
+        <constructor-arg ref="database"/>
+    </bean>
+
+    <bean id="gestionMaterielController" class="com.ensa.gi4.controller.GestionMaterielController">
+        <property name="gestionMaterielService" ref="gestionMaterielService"/>
+        <property name="materielFactory" ref="materielFactory"/>
+    </bean>
+
+    <bean id="gestionMaterielService" class="com.ensa.gi4.service.impl.GestionMaterielServiceImpl">
+        <constructor-arg ref="gestionLivreServiceImpl" index="0"/>
+        <constructor-arg ref="gestionChaiseServiceImpl" index="1"/>
+        <constructor-arg ref="livreDao" index="2"/>
+    </bean>
+
+    <bean id="gestionChaiseServiceImpl" class="com.ensa.gi4.service.impl.GestionChaiseServiceImpl">
+        <constructor-arg ref="chaiseDao"/>
+    </bean>
+
+    <bean id="gestionLivreServiceImpl" class="com.ensa.gi4.service.impl.GestionLivreServiceImpl">
+        <constructor-arg ref="livreDao"/>
+    </bean>
+
+
+</beans>

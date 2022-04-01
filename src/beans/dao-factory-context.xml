@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="database" class="com.ensa.gi4.datatabase.Database"/>
+
+    <bean id="chaiseDao"  class="com.ensa.gi4.datatabase.ChaiseDao" name="chaiseDao" >
+        <constructor-arg ref="database"/>
+    </bean>
+
+    <bean id="livreDao" class="com.ensa.gi4.datatabase.LivreDao">
+        <constructor-arg ref="database"/>
+    </bean>
+
+</beans>
