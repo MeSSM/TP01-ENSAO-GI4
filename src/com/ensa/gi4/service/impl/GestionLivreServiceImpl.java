@@ -2,7 +2,6 @@ package com.ensa.gi4.service.impl;
 
 import com.ensa.gi4.datatabase.LivreDao;
 import com.ensa.gi4.modele.Livre;
-import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.GestionLivreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +44,11 @@ public class GestionLivreServiceImpl implements GestionLivreService {
     @Override
     public void modifierLivre(Livre livre) {
         this.livreDao.updateEntity(livre);
+    }
+
+    @Override
+    public void allouerLivre(int id) {
+        this.livreDao.allocate(id);
     }
 
 }

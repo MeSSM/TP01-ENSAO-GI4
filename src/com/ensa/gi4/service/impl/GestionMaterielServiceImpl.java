@@ -15,13 +15,11 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
     // bd goes here
     private final GestionLivreService gestionLivreService;
     private final GestionChaiseService gestionChaiseService;
-    private final LivreDao livreDao;
 
     @Autowired
-    public GestionMaterielServiceImpl(GestionLivreService gestionLivreService, GestionChaiseService gestionChaiseService, LivreDao livreDao) {
+    public GestionMaterielServiceImpl(GestionLivreService gestionLivreService, GestionChaiseService gestionChaiseService) {
         this.gestionLivreService = gestionLivreService;
         this.gestionChaiseService = gestionChaiseService;
-        this.livreDao = livreDao;
     }
 
     @Override
@@ -32,8 +30,9 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
     @Override
     public void listerMateriel() {
         System.out.println("Liste de matériel :");
-        this.gestionChaiseService.listerChaise();
         this.gestionLivreService.listerLivre();
+        this.gestionChaiseService.listerChaise();
+
     }
 
     @Override
@@ -71,7 +70,8 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
         if(materiel.isAllocated()){
             System.out.println("Ce materiel est deja alloué");
         }else{
-            this.livreDao.allocate(materiel.getId());
+            this.gestionLivreService.allouerLivre(materiel.getId());
+            this.gestionChaiseService.allouerChaise(materiel.getId());
             System.out.println("Materiel alloué avec success !");
         }
 

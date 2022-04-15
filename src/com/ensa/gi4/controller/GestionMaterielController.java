@@ -49,7 +49,10 @@ public class GestionMaterielController {
 
     public void supprimerMateriel() {
         System.out.print("Entrer l'id du materiel à supprimer: ");
-        gestionMaterielService.chercherMateriel(scanner.nextInt());
+        int id = scanner.nextInt();
+        if(gestionMaterielService.chercherMateriel(id) != null){
+            gestionMaterielService.supprimerMateriel(id);
+        }
     }
 
     public void modifierMateriel() {

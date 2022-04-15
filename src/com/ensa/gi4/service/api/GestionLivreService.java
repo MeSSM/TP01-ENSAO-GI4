@@ -10,4 +10,5 @@ public interface GestionLivreService {
     Livre chercherLivreParId(int id);
     void supprimerLivreParId(int id);
     void modifierLivre(Livre livre);
+    void allouerLivre(int id);
 }

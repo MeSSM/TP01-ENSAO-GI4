@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GestionChaiseServiceImpl implements GestionChaiseService {
-    private final ChaiseDao chaiseDao;
+    private ChaiseDao chaiseDao;
 
     @Autowired
     public GestionChaiseServiceImpl(ChaiseDao chaiseDao) {
@@ -45,6 +45,11 @@ public class GestionChaiseServiceImpl implements GestionChaiseService {
     @Override
     public void modifierChaise(Chaise chaise) {
         this.chaiseDao.updateEntity(chaise);
+    }
+
+    @Override
+    public void allouerChaise(int id) {
+        this.chaiseDao.allocate(id);
     }
 
 }

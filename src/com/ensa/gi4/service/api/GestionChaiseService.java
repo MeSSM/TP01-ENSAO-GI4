@@ -10,4 +10,5 @@ public interface GestionChaiseService {
     Chaise chercherChaiseParId(int id);
     void supprimerChaiseParId(int id);
     void modifierChaise(Chaise chaise);
+    void allouerChaise(int id);
 }

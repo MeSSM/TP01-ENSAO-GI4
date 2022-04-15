@@ -2,8 +2,8 @@ package com.ensa.gi4.modele;
 
 public class Chaise extends Materiel {
     public String bois;
-    public Chaise(int id, String name, String bois) {
-        super(id, name);
+    public Chaise(int id, String name, String bois, boolean alloue) {
+        super(id, name, alloue);
         this.bois = bois;
     }
 

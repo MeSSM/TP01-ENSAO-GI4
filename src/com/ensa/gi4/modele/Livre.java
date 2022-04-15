@@ -2,8 +2,8 @@ package com.ensa.gi4.modele;
 
 public class Livre extends Materiel {
     private String auteur;
-    public Livre(int id, String name, String auteur) {
-        super(id, name);
+    public Livre(int id, String name, String auteur, boolean alloue) {
+        super(id, name, alloue);
         this.auteur = auteur;
     }
 

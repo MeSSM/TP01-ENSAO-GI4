@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MaterielFactory {
-    public static int currentId = 4;
+    public static int currentId = 1;
 
     public Livre creerLivre(String name, String auteur){
-        return new Livre(currentId++, name, auteur);
+        return new Livre(currentId++, name, auteur, false);
     }
 
     public Chaise creerChaise(String name, String bois){
-        return new Chaise(currentId++, name, bois);
+        return new Chaise(currentId++, name, bois, false);
     }
 }

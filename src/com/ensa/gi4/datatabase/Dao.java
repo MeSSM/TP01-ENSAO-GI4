@@ -1,36 +1,35 @@
 package com.ensa.gi4.datatabase;
 
 
-import com.ensa.gi4.modele.Materiel;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.*;
 import java.util.List;
-import java.util.Set;
+
 
 public abstract class Dao<T extends Model> {
-    protected Set<Materiel> database;
+    protected Connection connection;
+    protected MaterielFactory materielFactory;
 
-    public Dao(Database database) {
-        this.database = database.getDatabase();
+
+    public abstract void insertEntity(T entity);
+    public abstract T getEntityById(int id);
+    public abstract void updateEntity(T entity);
+    public abstract void deleteEntity(int id);
+    public abstract List<T> getAll();
+    public abstract void allocate(int id);
+    public abstract void deallocate(int id);
+
+    @Autowired
+    private void setConnection(DatabaseManager databaseManager) throws SQLException {
+        this.connection = databaseManager.getConnection();
     }
 
-    abstract void insertEntity(T entity);
-    abstract T getEntityById(int id);
-    abstract void updateEntity(T entity);
-    abstract void deleteEntity(int id);
-    abstract List<T> getAll();
-
-    public boolean isAllocated(int id){
-        return this.database.stream().anyMatch(e -> e.getId() == id && e.isAllocated());
+    @Autowired
+    private void setMaterielFactory(MaterielFactory materielFactory){
+        this.materielFactory = materielFactory;
     }
 
-    public void allocate(int id ){
-        this.database.stream().filter(e -> e.getId() == id).findFirst().ifPresent(materiel -> materiel.setAllocated(true));
-    }
-
-    public void deAllocate(int id ){
-        this.database.stream().filter(e -> e.getId() == id).findFirst().ifPresent(materiel -> materiel.setAllocated(false));
-    }
 
 
 }

@@ -7,10 +7,10 @@ public abstract class Materiel implements Model {
     protected String name;
     protected boolean isAllocated;
 
-    public Materiel(int id, String name) {
+    public Materiel(int id, String name, boolean isAllocated) {
         this.id = id;
         this.name = name;
-        this.isAllocated = false;
+        this.isAllocated = isAllocated;
     }
 
     public String getName() {
