@@ -1,8 +1,8 @@
 package com.ensa.gi4.modele;
 
-import com.ensa.gi4.datatabase.Entity;
+import com.ensa.gi4.datatabase.Model;
 
-public abstract class Materiel implements Entity {
+public abstract class Materiel implements Model {
     protected int id;
     protected String name;
     protected boolean isAllocated;

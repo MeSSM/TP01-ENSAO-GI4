@@ -1,15 +1,15 @@
 package com.ensa.gi4.datatabase;
 
 
-import com.ensa.gi4.modele.Chaise;
-import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Set;
 
-public abstract class Dao<T extends Entity> {
+public abstract class Dao<T extends Model> {
     protected Set<Materiel> database;
+
     public Dao(Database database) {
         this.database = database.getDatabase();
     }
@@ -21,19 +21,15 @@ public abstract class Dao<T extends Entity> {
     abstract List<T> getAll();
 
     public boolean isAllocated(int id){
-        return this.database.stream().filter(e -> e.getId() == id && e.isAllocated()).findFirst().orElse(null)!=null;
+        return this.database.stream().anyMatch(e -> e.getId() == id && e.isAllocated());
     }
 
     public void allocate(int id ){
-        Materiel materiel = this.database.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        if (materiel != null)
-            materiel.setAllocated(true);
+        this.database.stream().filter(e -> e.getId() == id).findFirst().ifPresent(materiel -> materiel.setAllocated(true));
     }
 
     public void deAllocate(int id ){
-        Materiel materiel = this.database.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        if (materiel != null)
-            materiel.setAllocated(false);
+        this.database.stream().filter(e -> e.getId() == id).findFirst().ifPresent(materiel -> materiel.setAllocated(false));
     }
 
 

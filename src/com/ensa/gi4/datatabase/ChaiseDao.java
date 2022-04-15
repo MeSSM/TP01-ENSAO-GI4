@@ -2,11 +2,16 @@ package com.ensa.gi4.datatabase;
 
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Materiel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Set;
 
+@Component
 public class ChaiseDao extends Dao<Chaise>{
 
+    @Autowired
     public ChaiseDao(Database database) {
         super(database);
     }
@@ -32,7 +37,7 @@ public class ChaiseDao extends Dao<Chaise>{
             chaise.setBois(chaise.getBois());
         } else
             throw new RuntimeException("Chaise avec id: " + chaise.getId() + " ne ce trouve pas dans la base de donnée");
-    }
+        }
 
     @Override
     public void deleteEntity(int id) {

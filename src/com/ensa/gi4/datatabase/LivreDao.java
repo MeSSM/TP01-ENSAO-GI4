@@ -4,13 +4,17 @@ package com.ensa.gi4.datatabase;
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Set;
 
-public class LivreDao extends Dao<Livre>{
+@Component
+public class LivreDao extends Dao<Livre> {
 
 
-
+    @Autowired
     public LivreDao(Database database) {
         super(database);
     }

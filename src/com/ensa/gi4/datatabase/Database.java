@@ -3,10 +3,12 @@ package com.ensa.gi4.datatabase;
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class Database {
     private Set<Materiel> database;
     public Database() {

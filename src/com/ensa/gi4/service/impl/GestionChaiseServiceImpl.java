@@ -4,10 +4,14 @@ import com.ensa.gi4.datatabase.ChaiseDao;
 
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.service.api.GestionChaiseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GestionChaiseServiceImpl implements GestionChaiseService {
-    private ChaiseDao chaiseDao;
+    private final ChaiseDao chaiseDao;
 
+    @Autowired
     public GestionChaiseServiceImpl(ChaiseDao chaiseDao) {
         this.chaiseDao = chaiseDao;
     }

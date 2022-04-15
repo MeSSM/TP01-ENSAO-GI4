@@ -6,7 +6,7 @@
 
     <bean id="database" class="com.ensa.gi4.datatabase.Database"/>
 
-    <bean id="chaiseDao"  class="com.ensa.gi4.datatabase.ChaiseDao" name="chaiseDao" >
+    <bean id="chaiseDao"  class="com.ensa.gi4.datatabase.ChaiseDao">
         <constructor-arg ref="database"/>
     </bean>
 

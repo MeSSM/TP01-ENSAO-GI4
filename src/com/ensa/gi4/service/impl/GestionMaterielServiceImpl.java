@@ -1,20 +1,23 @@
 package com.ensa.gi4.service.impl;
 
 import com.ensa.gi4.datatabase.LivreDao;
-import com.ensa.gi4.datatabase.MaterielFactory;
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.GestionChaiseService;
 import com.ensa.gi4.service.api.GestionLivreService;
 import com.ensa.gi4.service.api.GestionMaterielService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GestionMaterielServiceImpl implements GestionMaterielService {
     // bd goes here
-    private GestionLivreService gestionLivreService;
-    private GestionChaiseService gestionChaiseService;
-    private LivreDao livreDao;
+    private final GestionLivreService gestionLivreService;
+    private final GestionChaiseService gestionChaiseService;
+    private final LivreDao livreDao;
 
+    @Autowired
     public GestionMaterielServiceImpl(GestionLivreService gestionLivreService, GestionChaiseService gestionChaiseService, LivreDao livreDao) {
         this.gestionLivreService = gestionLivreService;
         this.gestionChaiseService = gestionChaiseService;
@@ -48,8 +51,7 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
         Livre livre = this.gestionLivreService.chercherLivreParId(id);
         Chaise chaise = this.gestionChaiseService.chercherChaiseParId(id);
         if (livre != null) return livre;
-        else if (chaise != null) return chaise;
-        else return null;
+        else return chaise;
     }
 
     @Override

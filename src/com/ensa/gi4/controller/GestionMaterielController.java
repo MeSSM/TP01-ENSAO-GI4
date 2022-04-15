@@ -5,9 +5,12 @@ import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.GestionMaterielService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
 
+@Controller
 public class GestionMaterielController {
     static Scanner scanner = new Scanner(System.in);
     private GestionMaterielService gestionMaterielService;
@@ -101,30 +104,15 @@ public class GestionMaterielController {
 
         System.out.print("localhost@root~# ");
         String next = scanner.next();
-        switch (next){
-            case "0":
-                sortirDeLApplication();
-                break;
-            case "1":
-                listerMateriel();
-                break;
-            case "2":
-                ajouterMateriel();
-                break;
-            case "3":
-                chercherMateriel();
-                break;
-            case "4":
-                modifierMateriel();
-                break;
-            case "5":
-                supprimerMateriel();
-                break;
-            case "6":
-                allouerUnMateriel();
-                break;
-            default:
-                System.out.println("Choix invalide ! Veuiller réssayer");
+        switch (next) {
+            case "0" -> sortirDeLApplication();
+            case "1" -> listerMateriel();
+            case "2" -> ajouterMateriel();
+            case "3" -> chercherMateriel();
+            case "4" -> modifierMateriel();
+            case "5" -> supprimerMateriel();
+            case "6" -> allouerUnMateriel();
+            default -> System.out.println("Choix invalide ! Veuiller réssayer");
         }
 
     }
@@ -133,11 +121,13 @@ public class GestionMaterielController {
         System.exit(0);
     }
 
+    @Autowired
     public void setGestionMaterielService(GestionMaterielService gestionMaterielService) {
         // injection par accesseur
         this.gestionMaterielService = gestionMaterielService;
     }
 
+    @Autowired
     public void setMaterielFactory(MaterielFactory materielFactory){
         this.materielFactory = materielFactory;
     }

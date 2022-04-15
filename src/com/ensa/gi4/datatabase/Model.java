@@ -1,5 +1,5 @@
 package com.ensa.gi4.datatabase;
 
-public interface Entity {
+public interface Model {
     int getId();
 }
